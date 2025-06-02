@@ -1,33 +1,28 @@
-// Include Node.js HTTP module
-const http = require('http');
+// Include Express
+const express = require('express');
 
 // Set port
 const port = 3000;
 
-// Create server, deal with requests/responses
-const server = http.createServer((req, res) => {
-  res.setHeader('Content-Type', 'text/html');
+const app = express();
 
-  switch (req.url) {
-    case '/':
-      res.statusCode = 200;
-      res.end('<h1>Welcome to Selomea Beyenes Home Page</h1><p>Please add interesting info here.</p>');
-      break;
+app.get('/',(req,res)=>{
+    res.send(`
+    <h1>Here's Selomea's home page</h1>
+    <p>Welcome to Express!</p>
+`);
+}); 
 
-    case '/about':
-      res.statusCode = 200;
-      res.end('<h1>Welcome to Selomea Beyenes About Page</h1><p>Please add interesting info here.</p>');
-      break;
+app.get('/about',(req,res)=>{
+    res.send(`
+    <h1>Here's Selomea's Express About Page</h1>
+    <p>Welcome to Express!</p>
+`);
+}); 
 
-    default:
-      res.statusCode = 404;
-      res.end('<h1>File Not Found</h1><p>Please add interesting info here.</p>');
-      break;
-  }
-});
 
 //Set server to listen fov requests
-server.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(port, () => {
+  console.log(`Server running at pot: ${port}`);
 });
 
